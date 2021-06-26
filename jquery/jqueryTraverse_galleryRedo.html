@@ -15,6 +15,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.event.move/2.0.1/jquery.event.move.min.js"/>
+
     <style>
         .image-source-link {
             color: #98C3D1;
@@ -42,25 +44,39 @@
         .mfp-with-zoom.mfp-removing.mfp-bg {
             opacity: 0;
         }
+
+        .selected{
+            border: 3px red solid
+        }
     </style>
     <title>Document</title>
 </head>
 <body>
-    <div class="zoom-gallery">
-        <!--
-    
-        Width/height ratio of thumbnail and the main image must match to avoid glitches.
-    
-        If ratios are different, you may add CSS3 opacity transition to the main image to make the change less noticable.
-    
-         -->
+    <div class="zoom-gallery prva">
         <a href="https://i.pinimg.com/originals/22/dc/b7/22dcb7e6c48cf29217a58c94940d0909.png" data-source="http://500px.com/photo/32736307" title="Dylan Moran" style="width:193px;height:125px;">
             <img src="https://i.pinimg.com/originals/22/dc/b7/22dcb7e6c48cf29217a58c94940d0909.png" width="193" height="125">
         </a>
-        <a href="http://farm3.staticflickr.com/2856/9207329420_7f2a668b06_o.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre" style="width:82px;height:125px;">
-            <img src="http://farm3.staticflickr.com/2856/9207329420_e485948b01_t.jpg" width="82px" height="125">
+        <a href="https://m.media-amazon.com/images/M/MV5BMmRlNDE0ZDctZTMwYi00MWQ2LTk2MzctNjdjODM0YWY1MjNmXkEyXkFqcGdeQXVyMjI0MjUyNTc@._V1_.jpg" data-source="http://500px.com/photo/32554131" title="Jim Jefferies" style="width:82px;height:125px;">
+            <img src="https://m.media-amazon.com/images/M/MV5BMmRlNDE0ZDctZTMwYi00MWQ2LTk2MzctNjdjODM0YWY1MjNmXkEyXkFqcGdeQXVyMjI0MjUyNTc@._V1_.jpg" width="82px" height="125">
+        </a>
+        <a href="https://i.pinimg.com/originals/a5/39/4a/a5394a7de03a8eb1a175ae061b86c9a8.png" data-source="http://500px.com/photo/32554131" title="George Carlin" style="width:82px;height:125px;">
+            <img src="https://i.pinimg.com/originals/a5/39/4a/a5394a7de03a8eb1a175ae061b86c9a8.png" width="82px" height="125">
         </a>
     </div>
+    <div class="zoom-gallery druga">
+        <a href="https://i.playboard.app/p/AAUvwnga_TRuX93OiukhMLj-Ofv-IDPixpKi-hEG51eIPg/default.jpg" data-source="http://500px.com/photo/32736307" title="Sandra Siladjev" style="width:193px;height:125px;">
+            <img src="https://i.playboard.app/p/AAUvwnga_TRuX93OiukhMLj-Ofv-IDPixpKi-hEG51eIPg/default.jpg" width="193" height="125">
+        </a>
+        <a href="https://cdn.wealthygorilla.com/wp-content/uploads/2019/02/Funniest-Stand-Up-Comedians-Robin-Williams-800x453.jpg" data-source="http://500px.com/photo/32554131" title="Robin Williams" style="width:82px;height:125px;">
+            <img src="https://cdn.wealthygorilla.com/wp-content/uploads/2019/02/Funniest-Stand-Up-Comedians-Robin-Williams-800x453.jpg" width="82px" height="125">
+        </a>
+        <a href="https://i.pinimg.com/originals/8f/20/08/8f20082b5a7a067aa8031f39744184ce.jpg" data-source="http://500px.com/photo/32554131" title="Jim Gaffigan" style="width:82px;height:125px;">
+            <img src="https://i.pinimg.com/originals/8f/20/08/8f20082b5a7a067aa8031f39744184ce.jpg" width="82px" height="125">
+        </a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" class="scripta"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         $(document).ready(function() {
@@ -88,122 +104,25 @@
                 }
                 
             });
-        });
+        });           
     </script>
+    <script>
+        var images = $("a img");
+        for(var i=0; i<images.length; i++) {
+            $(images[i]).width = 320;
+        };
 
-    <!--
-        <script>
-        var ArrayOfImages = [];
+        $(images[0]).addClass("selected");
 
-        var Image1 = new Image1()
-        Image1.src = "/WEB/CSS/images/BanjskaStena.jpg";
+        function removeBorder() {
+            var borderedImg = $('.selected');
+            $(borderedImg).removeClass("selected");
+            var secondGalleryMiddleImg = $(images[4]);
+            $(secondGalleryMiddleImg).addClass("selected");
+        }
 
-        var Image2 = new Image2()
-        Image2.src = "/WEB/CSS/images/DunavPanorama.jpg";
-
-        var Image3 = new Image3()
-        Image3.src = "/WEB/CSS/images/OKK.jpg";
-
-        var Image4 = new Image4()
-        Image4.src = "/WEB/CSS/images/NSpetrovaradin.jpg";
-
-        ArrayOfImages.push(Image1);
-        ArrayOfImages.push(Image2);
-        ArrayOfImages.push(Image3);
-        ArrayOfImages.push(Image4);
-        ArrayOfImages.toString();
-        document.write(ArrayOfImages);
-</script>
-<script type="text/javascript">
-    $(document).ready(function($) {
-        $('.open-popup').magnificPopup({
-            type: 'inline',
-
-            // Fixed position will be used
-            fixContentPos: true,
-
-            // Since disabled, Magnific Popup
-            // will not put close button
-            // inside content of popup
-            closeBtnInside: false,
-            prelo
-
-
-
-
-            <script>
-        var ArrayOfImages = [];
-
-        var Image1 = new Image1()
-        Image1.src = "/WEB/CSS/images/BanjskaStena.jpg";
-
-        var Image2 = new Image2()
-        Image2.src = "/WEB/CSS/images/DunavPanorama.jpg";
-
-        var Image3 = new Image3()
-        Image3.src = "/WEB/CSS/images/OKK.jpg";
-
-        var Image4 = new Image4()
-        Image4.src = "/WEB/CSS/images/NSpetrovaradin.jpg";
-
-        ArrayOfImages.push(Image1);
-        ArrayOfImages.push(Image2);
-        ArrayOfImages.push(Image3);
-        ArrayOfImages.push(Image4);
-        ArrayOfImages.toString();
-        document.write(ArrayOfImages);
-</script>
-<script type="text/javascript">
-    $(document).ready(function($) {
-        $('.open-popup').magnificPopup({
-            type: 'inline',
-
-            // Fixed position will be used
-            fixContentPos: true,
-
-            // Since disabled, Magnific Popup
-            // will not put close button
-            // inside content of popup
-            closeBtnInside: false,
-            preloader: false,
-
-            // Delay in milliseconds before
-            // popup is removed
-            removalDelay: 160,
-
-            // Class that is added to
-            // popup wrapper and background
-            mainClass: 'mfp-fade'
-        });
-    });
-</script>
-
-
-
-
-var randomNumb = function () {
-      return Math.floor(200 + Math.random() * 300);
-    };
-
-    setInterval(
-      $("a").each(function (index, element) {
-        var ran = randomNumb();
-        $(element).css("width", ran + "px");
-      }),
-      1000
-    );var randomNumb = function () {
-      return Math.floor(200 + Math.random() * 300);
-    };
-
-    setInterval(
-      $("a").each(function (index, element) {
-        var ran = randomNumb();
-        $(element).css("width", ran + "px");
-      }),
-      1000
-    );
-
-    -->
+        setTimeout(removeBorder, 3000);
+    </script>
 
 </body>
 </html>
