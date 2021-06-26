@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Festival</title>
+    <link rel="stylesheet" href="./festivalMovies.css">
+</head>
+<body>
+    <h1>Movie Festival</h1>
+    <div class="wrapper">
+        
+        <p>Please fill in the form.</p>
+        <p>Movie</p>
+        <form class="forma">
+            <label>Title</label>
+            <br>
+            <input class="movie_title field_width" type="text" placeholder="Title" required>
+            <br>
+            <label>Length(min)</label>
+            <br>
+            <input class="movie_length field_width" type="number" placeholder="Length in min" required>
+            <br>
+            <select class="movie_genre field_width">
+                <option value="">-</option>
+                <option value="Drama">Drama</option>
+                <option value="Action">Action</option>
+                <option value="Horror">Horror</option>
+                <option value="Comedy">Comedy</option>
+                <option value="SciFi">SciFi</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Fantasy">Fantasy</option>
+            </select>
+            <br><br>
+            <input class="movie_create_button field_width button" type="button" value="Create movie"></input>
+            <ul class="movie_list">
+
+            </ul>
+        </form>
+
+        <p>Program</p>
+        <form>
+            <label for="program_date">Date</label>
+            <br>
+            <input class="program_date field_width" type="date" placeholder="dd-mm-yyyy" required>
+            <br>
+            <input class="program_create_button field_width button" type="button" value="Create program"></input>
+            <ul class="program_list">
+
+            </ul>
+
+            <label for="movie_chosen">Movie</label>
+            <br>
+            <select class="dropdown_movies field_width" name="dropdown_movies">
+                <option value="">-</option>
+            </select>
+            <br>
+            <label for="program_chosen">Program</label>
+            <br>
+            <select class="dropdown_programs field_width" name="dropdown_programs">
+                <option value="">-</option>           
+            </select>
+            <br>
+            <input class="add_movie_to_program_button field_width button" type="button" value="Add movie to program"></input>
+
+        </form>
+
+    </div>
+    <script>
+         var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; 
+        var yyyy = today.getFullYear();
+            if(dd<10){
+                dd='0'+dd
+            } 
+            if(mm<10){
+                mm='0'+mm
+            } 
+        today = yyyy+'-'+mm+'-'+dd;
+        document.querySelector(".program_date").setAttribute("min", today);
+    </script>
+    <script src="./entities_movieFestival.js"></script>
+    <script src="./forms_movieFestival.js"></script>
+</body>
+</html>

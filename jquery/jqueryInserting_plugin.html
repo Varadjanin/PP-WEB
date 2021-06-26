@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .image-source-link {
+            color: #98C3D1;
+        }
+
+        .mfp-with-zoom .mfp-container,
+        .mfp-with-zoom.mfp-bg {
+            opacity: 0;
+            -webkit-backface-visibility: hidden;
+            /* ideally, transition speed should match zoom duration */
+            -webkit-transition: all 0.3s ease-out; 
+            -moz-transition: all 0.3s ease-out; 
+            -o-transition: all 0.3s ease-out; 
+            transition: all 0.3s ease-out;
+        }
+
+        .mfp-with-zoom.mfp-ready .mfp-container {
+                opacity: 1;
+        }
+        .mfp-with-zoom.mfp-ready.mfp-bg {
+                opacity: 0.8;
+        }
+
+        .mfp-with-zoom.mfp-removing .mfp-container, 
+        .mfp-with-zoom.mfp-removing.mfp-bg {
+            opacity: 0;
+        }
+    </style>
+    <title>Gallery</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var arrImg = [];
+        var body = $('body');
+        var img_1 = 'https://i.pinimg.com/originals/22/dc/b7/22dcb7e6c48cf29217a58c94940d0909.png';
+        var img_2 = 'https://m.media-amazon.com/images/M/MV5BMmRlNDE0ZDctZTMwYi00MWQ2LTk2MzctNjdjODM0YWY1MjNmXkEyXkFqcGdeQXVyMjI0MjUyNTc@._V1_.jpg';
+        var img_3 = 'https://i.pinimg.com/originals/a5/39/4a/a5394a7de03a8eb1a175ae061b86c9a8.png';
+        arrImg.push(img_1);
+        arrImg.push(img_2);
+        arrImg.push(img_3);
+        for (var i = 0; i < arrImg.length; i++) {
+            var aTag = $('<a>');
+            aTag.addClass('image-popup-fit-width')
+            var img = $('<img>');
+            aTag.attr('href', arrImg[i]);
+            img.attr('src', arrImg[i]);
+            aTag.append(img);
+            $('body').append(aTag);
+        }
+        $(document).ready(function() {
+            $('.image-popup-vertical-fit').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                mainClass: 'mfp-img-mobile',
+                image: {
+                    verticalFit: true
+                }
+            });
+            $('.image-popup-fit-width').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                image: {
+                    verticalFit: false
+                }
+            });
+            $('.image-popup-no-margins').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                closeBtnInside: false,
+                fixedContentPos: true,
+                mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+                image: {
+                    verticalFit: true
+                },
+                zoom: {
+                    enabled: true,
+                    duration: 300 // don't foget to change the duration also in CSS
+                }
+            });
+
+
+            //moj deo koda:
+
+            var galerryTitle = '<h1>Najbolji komicari</h1>';
+            $('body').prepend(galerryTitle);
+        
+
+            //adding random widths to images:
+            var randomArray = [];
+            for(var i=0; i<6; i++) {
+                randomArray.push(parseInt(Math.random() *1000) + 'px');
+            }
+            var images = $('img');
+            for(var i=0; i<6; i++) {
+                $(images[i]).attr("width", randomArray[i]);
+            };
+
+
+            //Bonus:
+            $(images).each(function(image) {
+                // console.log(this.width);
+                if ($(this).width() < 200) {
+                    this.style.border = 'green 2px solid';
+                } else {
+                    this.style.border = 'none';
+                    return false;
+                }
+            })
+        });
+    </script>
+</body>
+</html>

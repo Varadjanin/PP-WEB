@@ -1,0 +1,88 @@
+<!--
+Basic
+● Create page containing only one button
+● Toggle background color on button click
+
+Advance
+● Adapt basic example
+● On button click, automatically toggle background
+● Have a button to cancel automatic toggle
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color: #f5f5f5;
+
+        }
+        .toggleColor{
+            background-color: #2d3e4f;
+        }
+        #first{
+            background-color: #c1392b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            display:flex;
+            padding: 10px;
+            margin: auto;
+            margin-top: 40px;
+        }
+        #second{
+            background-color: #ffbf28;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            display:flex;
+            padding: 10px 20px;
+            margin: auto;
+            margin-top: 10px;
+        }
+        
+    </style>
+    <title>Events 1</title>
+</head>
+<body>
+    <button id="first">Toogle background</button>
+    <button id="second">Turn on</button>
+
+    <script>
+        /*
+        prvi deo zadatka:
+        var buttonNode = document.querySelector("button");
+        var bodyNode = document.querySelector("body");
+
+        function changeBackground() {
+            buttonNode.onclick = function() {
+                bodyNode.classList.toggle("toggleColor");
+            }
+        }
+
+        changeBackground();
+        */
+        var bodyNode = document.querySelector('body');
+        var firstButtonNode = document.getElementById('first');
+        var secondButtonNode = document.getElementById('second');
+        function changeBackround() {
+            bodyNode.classList.toggle('toggleColor');
+        };
+        var interval = undefined;
+        function automaticToggle(event) {
+            if(!interval) {
+                secondButtonNode.textContent = 'Turn off';
+                interval = setInterval(changeBackround, 500);
+            } else {
+                secondButtonNode.textContent = 'Turn on';
+                clearInterval(interval);
+                interval = undefined;
+            }
+        }
+        secondButtonNode.addEventListener('click', automaticToggle);
+    </script>
+</body>
+</html>

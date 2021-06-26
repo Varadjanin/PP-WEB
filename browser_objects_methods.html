@@ -1,0 +1,34 @@
+<!--
+Using JS on web page
+On-page Script
+● Create a script tag on the page
+● It should contain code that console.log’s some text
+● Wrap the previous script in a function
+● When page is loaded, trigger the function
+External JS Files
+● Include an external JS script on the page.
+● The script should contain a function that uses console.log to print something.
+● Trigger that function.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS on web page</title>
+    <!--<script>
+        (function () {
+            var someText = "Some text";
+            console.log(someText);
+        }) ();
+    </script> -->
+</head>
+<body>
+    <h1>JS in browser</h1>
+    <script type = "text/javascript" src="./windowObjects.js"></script>
+    <script type = "text/javascript" src="./windowMethods.js"></script>
+    <button onclick="alerting()">Click me for alerting!</button>
+</body>
+</html>
+

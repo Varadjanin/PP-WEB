@@ -1,0 +1,69 @@
+<!--
+Events propagation, stopping and preventing default
+
+    Create page containing gallery
+
+    Gallery contains six pictures
+    At least one of the pictures should have width of 300px
+    Add event listeners to all images on page
+    User can click on image and in that moment image will get 1px red border
+    If Image width is not 300px event propagation should be stopped!
+
+    Register event listener on document object, which listen for clicks
+    When click occurs it should print in console on which element user clicked
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery page</title>
+</head>
+<body>
+    <div class="gallery">
+        <img src="https://i.pinimg.com/236x/a5/06/48/a50648594a3211ba21ce7bcad8ad43c3.jpg" alt="sloth" class="fifth" width="300px">
+        <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lionel-animals-to-follow-on-instagram-1568319926.jpg?crop=0.922xw:0.738xh;0.0555xw,0.142xh&resize=640:*" alt="jez" class="first">
+        <img src="https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-2.jpg" alt="zirafa" class="second">
+        <img src="http://imgs.abduzeedo.com/files/articles/baby-animals/Baby-Animals-043.jpg" alt="monkey" class="forth">
+        <img src="http://cdn.shopify.com/s/files/1/1057/6184/articles/raccoons-enhanced-5913-1415212088-2_grande_993cc9e5-b83a-48bf-a6bb-430b2ae657da_1024x1024.jpg?v=1567699103" alt="otter" class="third">
+        <img src="https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-12.jpg" alt="kameleon" class="sixth">
+    </div>
+    <script>
+        
+        function action(event) {
+            if(event.target.nodeName === "IMG") {
+                event.target.style.border = "solid red 1px";
+                if(event.target.width != "300") {
+                    event.stopPropagation();
+                };
+            };
+            // console.log(event.target.width);
+        };
+
+        var first_pic = document.querySelector(".first");
+        var second_pic = document.querySelector(".second");
+        var third_pic = document.querySelector('.third');
+        var forth_pic = document.querySelector(".forth");
+        var fifth_pic = document.querySelector(".fifth");
+        var sixth_pic = document.querySelector(".sixth");
+        
+        first_pic.addEventListener("click", action);
+        second_pic.addEventListener("click", action);
+        third_pic.addEventListener("click", action);
+        forth_pic.addEventListener("click", action);
+        fifth_pic.addEventListener("click", action);
+        sixth_pic.addEventListener("click", action);
+
+        // or just adding eventListener to DIV(bubbling)
+        // var div = document.querySelector(".gallery");
+        // div.addEventListener("click", action);
+
+        document.addEventListener("click", function(event) {
+            console.log(event.target);
+        });
+    </script>
+</body>
+</html>

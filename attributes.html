@@ -1,0 +1,55 @@
+<!--
+    Attributes
+Create a form that contains multiple input elements with labels.
+Some of those elements should be required.
+
+Create a function that validates the form.
+The function checks each input element that belongs to the form.
+If the element has the required attribute and no data, it should get red borders.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .red_border{
+                border: red solid 5px;
+            }
+        </style>
+        <title>Attributes</title>
+
+    </head>
+    <body>
+        <form>
+            <label for= "username">Username:</label>
+            <br>
+            <input type="text" name="username" size="15" maxlength="30" required>
+            <br>
+            <label for="password">Password:</label>
+            <br>
+            <input type="password" name="password" size="15" maxlength="30" required />
+            <br><br>
+            <input type="submit" value="Submit"/>
+            <a href="./attributes.html">Forgot password</a>
+        </form>
+
+        <script>
+            function validateForm() {
+                var inputElements = document.querySelectorAll("input");
+                // console.log(inputElements);
+                for(var i=0; i< inputElements.length; i++) {
+                    if(inputElements[i].validity.valueMissing) {
+                //if(inputElements[i].hasAttribute("required") && ...)
+                        inputElements[i].className = "red_border";
+                    }
+                }
+                return inputElements;
+            }
+            setTimeout(validateForm, 3000);
+        </script>
+    </body>
+</html>

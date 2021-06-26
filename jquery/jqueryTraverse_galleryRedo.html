@@ -1,0 +1,209 @@
+<!--
+    Traverse (Redo Gallery)
+    Create a page with two “galleries”
+    Each gallery should contain 3 photos and it should be wrapped in a div
+    Width of the pictures should be 33%
+    One picture in the first gallery should have a red border around it
+    Red border should be a result of a class named “selected”
+    Create a function that selects the image with red borders and removes them, 
+    then uses traversing technique to navigate to the second gallery and applies the red borders to the middle picture
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .image-source-link {
+            color: #98C3D1;
+        }
+
+        .mfp-with-zoom .mfp-container,
+        .mfp-with-zoom.mfp-bg {
+            opacity: 0;
+            -webkit-backface-visibility: hidden;
+            /* ideally, transition speed should match zoom duration */
+            -webkit-transition: all 0.3s ease-out; 
+            -moz-transition: all 0.3s ease-out; 
+            -o-transition: all 0.3s ease-out; 
+            transition: all 0.3s ease-out;
+        }
+
+        .mfp-with-zoom.mfp-ready .mfp-container {
+                opacity: 1;
+        }
+        .mfp-with-zoom.mfp-ready.mfp-bg {
+                opacity: 0.8;
+        }
+
+        .mfp-with-zoom.mfp-removing .mfp-container, 
+        .mfp-with-zoom.mfp-removing.mfp-bg {
+            opacity: 0;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="zoom-gallery">
+        <!--
+    
+        Width/height ratio of thumbnail and the main image must match to avoid glitches.
+    
+        If ratios are different, you may add CSS3 opacity transition to the main image to make the change less noticable.
+    
+         -->
+        <a href="https://i.pinimg.com/originals/22/dc/b7/22dcb7e6c48cf29217a58c94940d0909.png" data-source="http://500px.com/photo/32736307" title="Dylan Moran" style="width:193px;height:125px;">
+            <img src="https://i.pinimg.com/originals/22/dc/b7/22dcb7e6c48cf29217a58c94940d0909.png" width="193" height="125">
+        </a>
+        <a href="http://farm3.staticflickr.com/2856/9207329420_7f2a668b06_o.jpg" data-source="http://500px.com/photo/32554131" title="Light Sabre" style="width:82px;height:125px;">
+            <img src="http://farm3.staticflickr.com/2856/9207329420_e485948b01_t.jpg" width="82px" height="125">
+        </a>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.zoom-gallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                closeOnContentClick: false,
+                closeBtnInside: false,
+                mainClass: 'mfp-with-zoom mfp-img-mobile',
+                image: {
+                    verticalFit: true,
+                    titleSrc: function(item) {
+                        return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
+                    }
+                },
+                gallery: {
+                    enabled: true
+                },
+                zoom: {
+                    enabled: true,
+                    duration: 300, // don't foget to change the duration also in CSS
+                    opener: function(element) {
+                        return element.find('img');
+                    }
+                }
+                
+            });
+        });
+    </script>
+
+    <!--
+        <script>
+        var ArrayOfImages = [];
+
+        var Image1 = new Image1()
+        Image1.src = "/WEB/CSS/images/BanjskaStena.jpg";
+
+        var Image2 = new Image2()
+        Image2.src = "/WEB/CSS/images/DunavPanorama.jpg";
+
+        var Image3 = new Image3()
+        Image3.src = "/WEB/CSS/images/OKK.jpg";
+
+        var Image4 = new Image4()
+        Image4.src = "/WEB/CSS/images/NSpetrovaradin.jpg";
+
+        ArrayOfImages.push(Image1);
+        ArrayOfImages.push(Image2);
+        ArrayOfImages.push(Image3);
+        ArrayOfImages.push(Image4);
+        ArrayOfImages.toString();
+        document.write(ArrayOfImages);
+</script>
+<script type="text/javascript">
+    $(document).ready(function($) {
+        $('.open-popup').magnificPopup({
+            type: 'inline',
+
+            // Fixed position will be used
+            fixContentPos: true,
+
+            // Since disabled, Magnific Popup
+            // will not put close button
+            // inside content of popup
+            closeBtnInside: false,
+            prelo
+
+
+
+
+            <script>
+        var ArrayOfImages = [];
+
+        var Image1 = new Image1()
+        Image1.src = "/WEB/CSS/images/BanjskaStena.jpg";
+
+        var Image2 = new Image2()
+        Image2.src = "/WEB/CSS/images/DunavPanorama.jpg";
+
+        var Image3 = new Image3()
+        Image3.src = "/WEB/CSS/images/OKK.jpg";
+
+        var Image4 = new Image4()
+        Image4.src = "/WEB/CSS/images/NSpetrovaradin.jpg";
+
+        ArrayOfImages.push(Image1);
+        ArrayOfImages.push(Image2);
+        ArrayOfImages.push(Image3);
+        ArrayOfImages.push(Image4);
+        ArrayOfImages.toString();
+        document.write(ArrayOfImages);
+</script>
+<script type="text/javascript">
+    $(document).ready(function($) {
+        $('.open-popup').magnificPopup({
+            type: 'inline',
+
+            // Fixed position will be used
+            fixContentPos: true,
+
+            // Since disabled, Magnific Popup
+            // will not put close button
+            // inside content of popup
+            closeBtnInside: false,
+            preloader: false,
+
+            // Delay in milliseconds before
+            // popup is removed
+            removalDelay: 160,
+
+            // Class that is added to
+            // popup wrapper and background
+            mainClass: 'mfp-fade'
+        });
+    });
+</script>
+
+
+
+
+var randomNumb = function () {
+      return Math.floor(200 + Math.random() * 300);
+    };
+
+    setInterval(
+      $("a").each(function (index, element) {
+        var ran = randomNumb();
+        $(element).css("width", ran + "px");
+      }),
+      1000
+    );var randomNumb = function () {
+      return Math.floor(200 + Math.random() * 300);
+    };
+
+    setInterval(
+      $("a").each(function (index, element) {
+        var ran = randomNumb();
+        $(element).css("width", ran + "px");
+      }),
+      1000
+    );
+
+    -->
+
+</body>
+</html>

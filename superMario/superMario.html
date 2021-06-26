@@ -1,0 +1,79 @@
+<!--
+
+Super Mario Emulator
+
+    ○ Create Super Mario emulator
+    ○ On right arrow click, Mario should run to the right
+        ■ Running animation
+        ■ Ground should move while Mario is running
+    ○ Images ( https://rb.gy/23keik )
+    ○ If you are feeling creative, feel freely to add additional functionality!
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .wrapper{
+            background-image: url('bg.jpg');
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            position: relative;
+            width: 1345px;
+            height: 645px;
+        }
+
+        .mario_stands{
+            width:200px;
+            height: 200px;
+            position: absolute;
+            left: 550px;
+            bottom: 105px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <img src="./mario.png" alt="Mario standing" class="mario_stands">
+    </div>
+    <script>
+
+        var field = document.querySelector(".wrapper");
+        var mario = document.querySelector(".mario_stands");
+        var body = document.body;
+        var x = 0;
+        var movement;
+
+        window.addEventListener("keydown", function (e) {
+            if (e.key == "ArrowRight") {
+                if (mario.getAttribute("src") === "./mario.png") {
+                    mario.removeAttribute("src");
+                    mario.setAttribute("src", "./mario_running.gif");
+                    movement = setInterval(function () {
+                        x -= 1;
+                        field.style.backgroundPosition = x + "px bottom";
+                    }, 1);
+                }
+            }
+        });
+
+        window.addEventListener("keyup", function (e) {
+            if (e.key == "ArrowRight") {
+                mario.removeAttribute("src");
+                mario.setAttribute("src", "./mario.png");
+                clearInterval(movement);
+            }
+        });
+
+
+    </script>
+</body>
+</html>

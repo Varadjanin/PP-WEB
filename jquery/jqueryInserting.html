@@ -1,0 +1,93 @@
+<!--
+   
+Inserting elements
+    Start with a blank HTML page
+    Using just JS (jQuery), create an image gallery
+    All links to images in the gallery should be elements of the same array!
+    When the gallery is created and visible on the page, create gallery title 
+    and insert it before the gallery images
+    Go through gallery images and set a random size to each gallery image
+
+Bonus:
+    Set a green border around each image whose width is less than 200px 
+    up until the first one that doesn't meet that requirement 
+    (i.e. when you get to the first img that is more than 200px wide, 
+    stop checking and setting green border).
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Inserting Exercise</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" class="scripta"></script>
+    <script>
+        //creating gallery:
+        var img1 = $("<img class='first_pic'>");
+        var img2 = $("<img class='second_pic'>");
+        var img3 = $("<img class='third_pic'>");
+        var img4 = $("<img class='forth_pic'>");
+        var img5 = $("<img class='fifth_pic'>");
+        var img6 = $("<img class='sixth_pic'>");
+        var div = $("<div class='wrapper'>");
+        $("script.scripta").before(div);
+        $("div.wrapper").prepend(img1);
+        $("img.first_pic").after(img2);
+        $("img.second_pic").after(img3);
+        $("img.third_pic").after(img4);
+        $("img.forth_pic").after(img5);
+        $("img.fifth_pic").after(img6);
+
+
+        //links to images:
+        var srcs = ['https://i.pinimg.com/originals/22/dc/b7/22dcb7e6c48cf29217a58c94940d0909.png', 'https://m.media-amazon.com/images/M/MV5BMmRlNDE0ZDctZTMwYi00MWQ2LTk2MzctNjdjODM0YWY1MjNmXkEyXkFqcGdeQXVyMjI0MjUyNTc@._V1_.jpg', 'https://i.pinimg.com/originals/a5/39/4a/a5394a7de03a8eb1a175ae061b86c9a8.png', 'https://i.playboard.app/p/AAUvwnga_TRuX93OiukhMLj-Ofv-IDPixpKi-hEG51eIPg/default.jpg', 'https://cdn.wealthygorilla.com/wp-content/uploads/2019/02/Funniest-Stand-Up-Comedians-Robin-Williams-800x453.jpg', 'https://i.pinimg.com/originals/8f/20/08/8f20082b5a7a067aa8031f39744184ce.jpg'];
+        $('img.first_pic').attr('src', srcs[0]);
+        $('img.second_pic').attr('src', srcs[1]);
+        $('img.third_pic').attr('src', srcs[2]);
+        $('img.forth_pic').attr('src', srcs[3]);
+        $('img.fifth_pic').attr('src', srcs[4]);
+        $('img.sixth').attr('src', srcs[5]);
+
+        $('img.first_pic').attr('alt', 'Dylan Moran');
+        $('img.second_pic').attr('alt', "Jim Jefferies");
+        $('img.third_pic').attr('alt', "George Carlin");
+        $('img.forth_pic').attr('alt', "Sandra Siladjev");
+        $('img.fifth_pic').attr('alt', "Robin Williams");
+        $('img.sixth_pic').attr('alt', "Jim Gaffigan");
+
+        //creating and adding Gallery title:
+        var galerryTitle = '<h1>Najbolji komicari</h1>';
+        $("img.first_pic").before(galerryTitle);
+        
+
+        //adding random widths to images:
+        var randomArray = [];
+        for(var i=0; i<6; i++) {
+            randomArray.push(parseInt(Math.random() *1000) + 'px');
+        }
+        var images = $('img');
+        for(var i=0; i<6; i++) {
+            $(images[i]).attr("width", randomArray[i]);
+        };
+
+
+        //Bonus:
+        $(images).each(function(image) {
+            // console.log(this.width);
+            if ($(this).width() < 200) {
+                this.style.border = 'green 2px solid';
+            } else {
+                this.style.border = 'none';
+                return false;
+            }
+        })
+
+
+    </script>
+</body>
+</html>
