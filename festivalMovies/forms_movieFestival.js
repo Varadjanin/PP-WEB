@@ -1,13 +1,16 @@
+//creating festival:
+var festival = new Festival();
+
 //selecting elements:
 
-var movieTitleNode = document.querySelector(".movie_title");
-var movieLengthNode = document.querySelector(".movie_length");
-var movieGenreNode = document.querySelector(".movie_genre");
+var movieTitle = document.querySelector(".movie_title");
+var movieLength = document.querySelector(".movie_length");
+var movieGenre = document.querySelector(".movie_genre");
 var movieList = document.querySelector(".movie_list");
 var dropdownMovies = document.querySelector(".dropdown_movies");
 
 
-var programDateNode = document.querySelector(".program_date");
+var programDate = document.querySelector(".program_date");
 var programList = document.querySelector(".program_list");
 var dropdownPrograms = document.querySelector(".dropdown_programs");
 
@@ -16,19 +19,26 @@ var dropdownPrograms = document.querySelector(".dropdown_programs");
 
 function createMovie() {
     
-    var newMovie = new Movie(movieTitleNode.value, parseInt(movieLengthNode.value), movieGenreNode.value);
+    var newMovie = new Movie(movieTitle.value, parseInt(movieLength.value), movieGenre.value);
+    var index = festival.allMovies.push(newMovie);
     
     var newLi = document.createElement("li");
-    newLi.textContent = newMovie.getData();
+    newLi.innerHTML = newMovie.getData();
     movieList.appendChild(newLi);
     
-    //adding movie to the dropdown list:
-    dropdownMovies.innerHTML += "<option value='" + newLi.textContent + "'>'" + newLi.textContent +"'</option>" + "\n";
     
+    //adding movie to the dropdown list:
+    var movieOption = document.createElement("option");
+
+    movieOption.innerHTML = newMovie.title;
+    movieOption.setAttribute("value", index);
+    dropdownMovies.appendChild(movieOption);
+    
+
     //clearing the fields for new inputs:
-    movieTitleNode.value = "";
-    movieLengthNode.value = "";
-    movieGenreNode.value = "";
+    movieTitle.value = "";
+    movieLength.value = "";
+    movieGenre.value = "";
     
 };
 
@@ -37,18 +47,24 @@ function createMovie() {
 
 function createProgram() {
     
-    var newProgram = new Program(programDateNode.value);
+    var newProgram = new Program(programDate.value);
+    var index = festival.allPrograms.push(newProgram);
+
     
     var newLi = document.createElement("li");
-    newLi.textContent = newProgram.getData();
-    newLi.classList.add('added');
+    newLi.innerHTML = newProgram.getData();
+    // newLi.classList.add('added');
     programList.appendChild(newLi);
     
     //adding program to the dropdown list:
-    dropdownPrograms.innerHTML += "<option value='" + newLi.textContent + "'>'" + newLi.textContent +"'</option>" + "\n";
+    var option = document.createElement('option');
+    option.setAttribute('value', index);
+    option.innerHTML = newProgram.getData();
+    dropdownPrograms.appendChild(option);
+    
     
     //clearing the fields for new inputs:
-    programDateNode.value = "";
+    programDate.value = "";
 }
 
 
@@ -56,73 +72,33 @@ function createProgram() {
 //adding movie to the program:
 
 function addMovieToTheProgram() {
-    //ne sabira kad dodam drugi film u isti program
     
-    var selectedMovieNode = dropdownMovies.value;
-    var selectedProgramNode = dropdownPrograms.value;
-    
-    var movieElements = selectedMovieNode.split(', ');
-    var movietitle = movieElements[0];
-    var durationMin = movieElements[1];
-    var duration = parseInt(durationMin.split('min')[0]);
-    var genreInitials = movieElements[2];
-    var moviegenre;
-    Array.from(movieGenreNode).forEach(function(genreLine) {
-        if(genreInitials[0].toUpperCase()===genreLine.value[0]) {
-            moviegenre = genreLine.value;
-        }
-    });
-    
-    var newMovie = new Movie(movietitle, duration, moviegenre);
-    
-    var programElements = selectedProgramNode.split(', ');
-    var programDate = programElements[0];
-    // // var numberOfMovies = programElements[1].split(' ')[0];
-    // // var durationMin = programElements[2].split(':')[1];
-    // // var durationNum = durationMin.split('min')[0];
-    
-    var newProgram = new Program(programDate);
-    
-    newProgram.addMovie(newMovie);
-    
-    // console.log(newProgram);
-    // console.log(newMovie.length);
-    // console.log(newMovie.getData());
-    
-    // console.log(newProgram.listOfMovies);
-    // console.log(newProgram.numberOfMoviesInProgram());
-    // console.log(newProgram.getTotalLengthOfAllMoviesInTheProgram());
-    // console.log(newProgram.getData());
-    
-    var updatedProgram = newProgram.getData();
-    
-    var liAdded = document.querySelectorAll(".added");
-    
-    for(var i=0; i<liAdded.length; i++) {
-        if(liAdded[i].innerText == selectedProgramNode) {
-            liAdded[i].innerText = updatedProgram;
-        }
-    };
-    
-    var opcije = Array.from(dropdownPrograms.children);
-    
-    for(var y=0; y<opcije.length; y++) {
-        if(opcije[y].innerText == "'"+selectedProgramNode+"'") {
-            opcije[y].innerText = "'"+updatedProgram+"'";
-            opcije[y].value = "'"+updatedProgram+"'";
-        }
-    };
-    
-    //clearing fields for adding move to the program:
-    selectedMovieNode = '';
-    selectedProgramNode = '';
+    var programListElements = document.querySelectorAll(".program_list li");
+    var programSelectOptions = document.querySelectorAll(".dropdown_programs option");
+
+    var movieValue = parseInt(dropdownMovies.value);
+    var programValue = parseInt(dropdownPrograms.value);
+
+    // console.log(movieValue); //broji sve napravljene filmove
+    // console.log(programValue);//broji sve napravljene programe
+
+    var movie = festival.allMovies[movieValue-1];
+    var program = festival.allPrograms[programValue-1];
+    program.listOfMovies.push(movie);
+
+    // console.log(movie);
+    // console.log(program);
+
+    programListElements[programValue-1].innerHTML = program.getData();
+    programSelectOptions[programValue].innerHTML = program.getData();
+
 };
 
-var createMovieBtnNode = document.querySelector(".movie_create_button");
-var createProgramBtnNode = document.querySelector(".program_create_button");
-var addMovieToProgramBtnNode = document.querySelector(".add_movie_to_program_button");
+var createMovieBtn = document.querySelector(".movie_create_button");
+var createProgramBtn = document.querySelector(".program_create_button");
+var addMovieToProgramBtn = document.querySelector(".add_movie_to_program_button");
 
-createMovieBtnNode.addEventListener("click", createMovie);
-createProgramBtnNode.addEventListener("click", createProgram);
-addMovieToProgramBtnNode.addEventListener("click", addMovieToTheProgram); 
+createMovieBtn.addEventListener("click", createMovie);
+createProgramBtn.addEventListener("click", createProgram);
+addMovieToProgramBtn.addEventListener("click", addMovieToTheProgram); 
 

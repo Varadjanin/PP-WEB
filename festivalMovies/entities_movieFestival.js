@@ -28,7 +28,19 @@ function Program(date) {
         throw new Error('Field Date is required');
     }
 
-    this.date = new Date(date);
+    var today = new Date(date);
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; 
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+    today = dd+'-'+mm+'-'+yyyy;
+
+    this.date = today;
     this.listOfMovies = [];
 }
 
@@ -60,6 +72,11 @@ Program.prototype.getTotalLengthOfAllMoviesInTheProgram = function () {
 Program.prototype.getData = function () {
     var result = this.date + ", " + this.listOfMovies.length + " movies, duration:" + this.getTotalLengthOfAllMoviesInTheProgram();
     return result;
+}
+
+function Festival() {
+    this.allMovies = [];
+    this.allPrograms = [];
 }
 
 
