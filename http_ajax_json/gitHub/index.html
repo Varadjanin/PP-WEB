@@ -1,0 +1,88 @@
+<!--
+    GitHubSearcher
+
+Create a page that contains a logo and a search box (as shown on the mock)
+The page is initially empty (there are no listed users)
+
+The user can input some text in the search box
+When the user clicks enter, a request is sent using jQuery Ajax API
+
+The request is sent to GitHub’s endpoint for searching users
+Documentation can be found at https://developer.github.com/v3
+Try to find URL and structure of a request for searching users
+
+When a response is received, print an image and a username on the page for all the users in the response
+
+
+
+Part II
+Build upon previous part of exercise (GitHubSearcher) and add additional features.
+
+Each user in the list is clickable.
+When user clicked new content (or new page) is presented.
+Show all github repositories of selected user (in list of grid).
+When showing repository you should present:
+Repository name
+Repository image, or some placeholder if there is no picture
+Description
+Number of start
+
+API documentation for GitHub repositories: https://developer.github.com/v3/repos/
+
+Extra:
+For each repository show used languages on that repository
+
+-->
+
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        padding-top: 50px;
+      }
+
+      .alert {
+        display: none;
+      }
+
+      .header {
+        margin-bottom: 100px;
+      }
+
+      .card {
+        width: 18 rem;
+      }
+    </style>
+    >
+    <title>Github users</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row header">
+        <div class="col-6 d-flex flex-row-reverse">
+          <form class="form-inline my-2 my-lg-0">
+            <input
+              type="search"
+              placeholder="Search"
+              class="form-control mr-sm-2"
+            />
+          </form>
+        </div>
+      </div>
+      <div class="row cardHolder"></div>
+      <div class="alert alert-danger"></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
