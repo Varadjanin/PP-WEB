@@ -1,0 +1,93 @@
+header{
+    background-image: url('./exam.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    position: relative;
+    width: 1345px;
+    height: 400px;
+}
+h1, h2{
+    position: relative;
+    left: 500px;
+    top: 170px;
+}
+
+.passed{
+    position: relative;
+    left: 500px;
+    top: 170px;
+    background-color:aqua;
+    width: 300px;
+    padding: 10px;
+    display: flex;
+}
+.failed{
+    position: relative;
+    left: 500px;
+    top: 170px;
+    background-color:tomato;
+    width: 300px;
+    padding: 10px;
+    display: flex;
+}
+.countP, .countF{
+    position:relative;
+    right: -190px;
+}
+
+.percentageF{
+    position:relative;
+    right: -200px;
+    background-color: salmon;
+    padding: 2px;
+    font-size: 10px;
+}
+.info{
+    text-align: center;
+    background-color: thistle;
+    padding: 10px;
+}
+.button{
+    color:teal;
+    border: none;
+    background-color: thistle;
+    font-weight: bold;
+}
+.list{
+    display: flex;
+}
+
+.listP{
+    margin-top: 50px;
+    margin-left: 300px;
+    width: 300px;
+}
+
+.listF{
+    margin-top: 50px;
+    margin-left: 100px;
+    width: 300px;
+    color: red;
+}
+
+tr{
+    display: flex;
+    width: 300px;
+    border-collapse: collapse;
+    border-top: 1px solid rgb(155, 153, 153);
+    border-bottom: 1px solid rgb(155, 153, 153);
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #ddd;
+}
+
+.grade_right{
+    position: relative;
+    right: -90px;
+}

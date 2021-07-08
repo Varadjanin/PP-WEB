@@ -34,13 +34,13 @@ class Employee extends Person {
         this.salary = salary;
     }
     getData() {
-        console.log(this.salary);
+        console.log(`${this.salary}`);
     };
     getSalary() {
-        console.log(this.salary);
+        console.log(`${this.salary}`);
     };
     increaseSalary() {
-        return this.salary = this.salary + ((this.salary * 10) / 100);
+        return `${this.salary = this.salary + ((this.salary * 10) / 100)}`;
     };
 }
 
@@ -50,43 +50,35 @@ class Developer extends Employee {
         this.specialization = specialization;
     };
     getSpecialization() {
-        console.log (this.specialization);
+        console.log(`${this.specialization}`);
     }
 }
 
 class Manager extends Employee {
-    constructor(name, surname, job, salary)
-}
-
-
-
-
-function Manager(name, surname, job, salary, department) {
-    Employee.call(this, name, surname, job, salary);
-    this.department = department;
-}
-Manager.prototype = Object.create(Employee.prototype);
-Manager.prototype.constructor = Manager;
-
-
-Manager.prototype.getDepartment = function () {
-    console.log(this.department);
+    constructor(name, surname, job, salary, department) {
+        super(name, surname, job, salary);
+        this.department = department;
+    };
+    getDepartment() {
+        console.log(`${this.department}`);
+    };
+    changeDepartment(newDepartment) {
+        this.department = newDepartment;
+        return `${this.department}`;
+    };
 };
-Manager.prototype.changeDepartment = function (newDepartment) {
-    this.department = newDepartment;
-    return this.department;
-};
+
 
 
 //testing:
-var osoba = new Person('Pera', 'Peric');
-var employee = new Employee('Pera', 'Peric', "typing", 500);
-var developer = new Developer('Pera', 'Peric', "typing", 700, "JS");
-var manager = new Manager('Pera', 'Peric', "typing", 1000, "HR");
+const osoba = new Person('Pera', 'Peric');
+const employee = new Employee('Pera', 'Peric', "typing", 500);
+const developer = new Developer('Pera', 'Peric', "typing", 700, "JS");
+const manager = new Manager('Pera', 'Peric', "typing", 1000, "HR");
 
 console.log(osoba, employee, developer, manager);
 
-console.log(employee.getData());
+employee.getData();
 employee.getSalary();
 console.log(employee.increaseSalary());
 console.log(employee);

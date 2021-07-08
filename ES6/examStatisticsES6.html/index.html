@@ -1,0 +1,128 @@
+<!--
+Exam Statistics
+
+The goal of this exercise is to write a code for the web application that
+helps with the exam statistics.
+
+The application should be developed with the following use-case scenario
+on mind. 
+    Firstly, a user can select the name of the subject from the select
+    list provided in the left part of the form. 
+
+    Then, the user can type in the name and surname of the student. 
+
+    Finally, the user can select a grade from the list provided in the right part of the form. 
+
+    When the user clicks on the ADD button, the information about student 
+    and subject appears on the list titled with passed or failed depending on their score. 
+
+    Synchronously, the exam statistics presented in the page header is updated. 
+    That is the number of students that have passed the exam, and both the number and the
+    percentage of the students who has failed the exam.
+
+If provided input is not valid, appropriate error messages should be shown.
+Both name and surname should be provided and both should start with
+capitals. A grade should be valid numerical value from 1 to 10.
+
+You should organize your working directory in the following manner:
+    CSS: main.css
+    JS: subject.js
+        student.js
+        exam.js
+        form.js
+        app.js
+        index.html
+
+In index.html file write all code relevant for the given page structure.
+In main.css file write all CSS code relevant for the given page design.
+In subject.js file:
+    ● write a constructor function with one argument that represents the
+    name of the subject
+    ● add to its prototype a method getSubjectName that returns the
+    subject name
+In student.js file:
+    ● write a constructor function with two arguments that represent name
+    and surname of a student
+    ● add to its prototype a method getStudentData that returns the name
+    and surname of the student
+In exam.js file:
+    ● write a constructor function with three arguments that represent a
+    subject, a student, and a grade.
+    ● add to its prototype a method getExamInfo that returns the name of
+    the subject and the name and surname of the student.
+
+    ● add to its prototype a method hasPassed that checks if the student
+    has passed the exam. A student has passed the exam if their grade
+    is greater than 5.
+In form.js file:
+    ● write a function that collects all the data from the form
+    ● write a function that validates all collected data
+    ● write a function that updates the given list so it adds the new item at
+    the end of the list
+    ● write a function that updates the part of the page with the statistics
+
+In app.js file:
+    ● Declare all necessary variables for managing passed and failed
+    exams as well as their statistics.
+    ● Write all code that connects a user behaviour with application logic.
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Statistics</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <header>
+        <h1>Exam Statistic June</h1>
+        <h2>Total students: </h2>
+        <div class="passed">PASSED
+            <div class="countP"></div>
+        </div>
+        <br>
+        <div class="failed">FAILED
+            <div class="countF"></div>
+            <div class="percentageF"></div>
+        </div>
+    </header>
+    <form name="myForm">
+        <div class="info">
+            <select class="subject" name="form_subject">
+                <option value="HTML">HTML</option>
+                <option value="SASS ">SASS </option>
+                <option value="JSON ">JSON </option>
+            </select>
+            <input type="text" name="form_student" class="student" placeholder=" Name and surname">
+            <select class="grade" name="form_grade">
+                <option value="">Grade</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <input type="button" value="ADD" class="button">
+        </div>
+        <div class="list">
+            <div class="listP">PASSED
+                <table class="passedUl"></table>
+            </div>
+            <div class="listF">FAILED
+                <table class="failedUl"></table>
+            </div>
+        </div>
+    </form>
+
+    <script src="./subject.js"></script>
+    <script src="./student.js"></script>
+    <script src="./exam.js"></script>
+    <script src="./form.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>

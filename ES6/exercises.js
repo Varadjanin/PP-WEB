@@ -85,7 +85,7 @@ console.log(filterInt([1.6, 11.34, 9.23, 7, 3.11, 8]));
 // 	Function arguments: 23, 11.5, 9, 'abc', 45, 28, 553 
 // 	Output: [45, 553]
 
-const filterInt5 = arr => arr.filter(element => (element == parseInt(element) && element.toString().includes("5")));
+const filterInt5 = arr => arr.filter(element => (element === parseInt(element) && element.toString().includes("5")));
 console.log(filterInt5([23, 11.5, 9, 'abc', 45, 28, 553]));
 	
 // Write a function that returns indexes of the elements greater than 10. 
@@ -94,12 +94,13 @@ console.log(filterInt5([23, 11.5, 9, 'abc', 45, 28, 553]));
 
 const filterIndex = arr => {
     let result = [];
-    for(var i=0; i<arr.length; i++) {
-        if(arr[i]>10) {
-            result[result.length] = i;
+    arr.forEach(el => {
+        if(el>10) {
+            result[result.length] = arr.indexOf(el);
         };
-    };
+    });
     return result;
+
 };
 console.log(filterIndex([1.6, 11.34, 29.23, 7, 3.11, 18]));
 
