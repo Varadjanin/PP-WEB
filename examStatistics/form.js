@@ -68,8 +68,9 @@ function updateLists () {
 }
 
 function updateHeader () {
-	var total = document.querySelector('h2').textContent;
-	total += (countPassed + countFailed);
+	var total = document.querySelector('h2');
+	totalNo = (countPassed + countFailed);
+	total.innerHTML = 'Total students: ' + totalNo;
 
     var passedNo = document.querySelector('.countP');
 	passedNo.textContent = countPassed;
