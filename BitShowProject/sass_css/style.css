@@ -1,0 +1,56 @@
+header {
+  position: relative;
+  width: 100%;
+}
+
+.d-flex {
+  margin-right: 130px;
+}
+
+.navbar-brand {
+  margin-left: 130px;
+}
+
+#searchList {
+  position: absolute;
+  top: 50px;
+  background-color: #f0f0f0;
+  list-style: none;
+  padding-left: 0;
+  z-index: 1;
+}
+
+#searchList li {
+  border-bottom: 1px solid black;
+  text-align: left;
+  text-overflow: clip;
+  width: 205px;
+  background-color: #f0f0f0;
+}
+
+#searchList li:hover {
+  cursor: -webkit-grab;
+  cursor: grab;
+  background-color: white;
+}
+
+.card {
+  margin: 10px auto;
+}
+
+.card img {
+  width: 100%;
+}
+
+.errormessage {
+  text-align: center;
+  display: block;
+  background-color: red;
+  color: white;
+  font-size: large;
+}
+
+footer {
+  padding: 20px;
+}
+/*# sourceMappingURL=style.css.map */
