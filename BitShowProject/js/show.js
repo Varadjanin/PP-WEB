@@ -88,7 +88,7 @@ const showCast = (id) => {
 };
 
 
-
+//adding crew to list
 const showCrew = (id) => {
   $.ajax({
     url: `${url3}${id}/crew`,
@@ -98,7 +98,7 @@ const showCrew = (id) => {
     $(".cast").after(listOfCrew);
     response.forEach((element) => {
       let crewMembers = `
-              <li>${element.person.name}</li>
+              <li>${element.type}: ${element.person.name}</li>
               
               `;
       $(".crew").append(crewMembers);

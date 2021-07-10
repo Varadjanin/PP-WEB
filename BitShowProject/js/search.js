@@ -59,7 +59,7 @@ input.keyup(() => {
         method: 'GET',
 	}).done((gotResult) => {
 		$("#searchList").text('');
-		for (let i = 0; i <= 9; i++) {
+		for (let i = 0; i < 10; i++) {
 			if(gotResult[i] !== undefined) {
 				let searchListItem = $(`<li onclick='goToShow(${gotResult[i].show.id})'>${gotResult[i].show.name}</li>`);
 				$("#searchList").append(searchListItem);
