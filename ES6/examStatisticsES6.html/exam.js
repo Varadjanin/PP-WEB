@@ -32,6 +32,6 @@ class Exam {
     };
 };
 
-// var exam = new Exam("js", "Marko", 5);
+// let exam = new Exam("js", "Marko", 5);
 // console.log(exam.hasPassed());
 // console.log(exam.getExamInfo());
